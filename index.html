@@ -30,7 +30,7 @@
         <div class="eyebrow">A joyful union · 12 December 2026</div>
         <h1><span class="person-name"><span contenteditable="true">Nikhil Jain</span><span class="name-family">Son of Amita Jain &amp; Pardeep Kumar Jain</span></span><i class="amp">&amp;</i><span class="person-name"><span contenteditable="true">Dr. Shradha Jain</span><span class="name-family">Daughter of Manju Jain &amp; Ravish Jain</span></span></h1>
         <div class="rule">❧</div>
-        <p class="intro" contenteditable="true">With hearts full of love, gratitude and joy, Late Smt. Rajkarni Jain and Shri Darshan Kumar Jain invite you to join us as we begin a beautiful new chapter filled with love, laughter and the blessings of their grandchild.</p>
+        <p class="intro" contenteditable="true">With hearts full of love, gratitude and joy, Late Smt. Rajkarni Jain and Shri Darshan Kumar Jain invite you to join us as we begin a beautiful new chapter filled with love, laughter and the blessings of their grandson.</p>
         <a class="hero-cta" href="#date">Discover the celebration&nbsp; ↓</a>
       </div>
       <div class="scroll-hint"><span>Scroll to explore</span><i></i></div>
@@ -82,7 +82,7 @@
     $('#couplePhotoUpload').addEventListener('change',async e=>{const file=e.target.files[0];if(file){$('#couplePhoto').src=URL.createObjectURL(file);try{await saveMedia('couple',file)}catch{}}});
     const musicButton=$('#musicButton'),musicUpload=$('#musicUpload'),player=$('#audioPlayer');musicButton.addEventListener('click',()=>{if(player.src){if(player.paused){player.play();musicButton.textContent='♫ Pause music'}else{player.pause();musicButton.textContent='♫ Play music'}}else musicUpload.click()});musicUpload.addEventListener('change',async e=>{const file=e.target.files[0];if(file){player.src=URL.createObjectURL(file);player.play();musicButton.classList.add('ready');musicButton.textContent='♫ Pause music';try{await saveMedia('music',file)}catch{}}});player.addEventListener('ended',()=>musicButton.textContent='♫ Play music');loadMedia('music').then(blob=>{if(blob){player.src=URL.createObjectURL(blob);musicButton.classList.add('ready');musicButton.textContent='♫ Play music'}}).catch(()=>{});
     // Editable copy is stored on this device.
-    const saved=localStorage.getItem('nikshraInviteText');if(saved){try{const values=JSON.parse(saved);if(values[1]==='Nikhil')values[1]='Nikhil Jain';if(values[2]==='Shradha')values[2]='Dr. Shradha Jain';$$('[contenteditable]').forEach((el,i)=>{if(values[i]!=null)el.innerHTML=values[i]})}catch{}}
+    const saved=localStorage.getItem('nikshraInviteText');if(saved){try{const values=JSON.parse(saved).map(v=>typeof v==='string'?v.replace(/grandchild/gi,'grandson'):v);if(values[1]==='Nikhil')values[1]='Nikhil Jain';if(values[2]==='Shradha')values[2]='Dr. Shradha Jain';$$('[contenteditable]').forEach((el,i)=>{if(values[i]!=null)el.innerHTML=values[i]})}catch{}}
     let saveTimer;document.addEventListener('input',e=>{if(e.target.matches('[contenteditable]')){clearTimeout(saveTimer);saveTimer=setTimeout(()=>localStorage.setItem('nikshraInviteText',JSON.stringify([...$$('[contenteditable]')].map(el=>el.innerHTML))),250)}});
   </script>
 </body>
